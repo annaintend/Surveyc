@@ -29,6 +29,10 @@ export function Screen18({ onNext }: Screen18Props) {
     return () => clearInterval(interval);
   }, [onNext]);
 
+  useEffect(() => {
+    window.amplitude?.track?.("plan_generation_started");
+  })
+
   return (
     <div className="h-full bg-[#f5f5f5] flex flex-col overflow-hidden">
       <motion.div 

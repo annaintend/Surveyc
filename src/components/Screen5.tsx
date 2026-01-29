@@ -21,6 +21,9 @@ export function Screen5({ onNext }: Screen5Props) {
   const handleNext = () => {
     if (selected) {
       onNext();
+      window.amplitude?.track?.("goal_selected", {
+        goal_type: selected
+      });
     }
   };
 

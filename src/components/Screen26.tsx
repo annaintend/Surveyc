@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { Check } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import imgSugarnologooo1 from "@/assets/sugarno-black.png";
 
 interface Screen26Props {
@@ -9,6 +9,10 @@ interface Screen26Props {
 
 export function Screen26({ onNext }: Screen26Props) {
   const [selectedPlan, setSelectedPlan] = useState<'monthly' | 'annual'>('annual');
+
+  useEffect(() => {
+    window.amplitude?.track?.("plan_selection_viewed");
+  }, [])
 
   return (
     <div className="h-full bg-[#f5f5f5] flex flex-col overflow-hidden">
@@ -162,7 +166,12 @@ export function Screen26({ onNext }: Screen26Props) {
         <div className="fixed bottom-0 left-0 right-0 px-6 pb-8 pt-4 bg-[#f5f5f5] pointer-events-none" style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
           <div className="max-w-[450px] mx-auto pointer-events-auto">
             <button
-              onClick={() => window.location.href = 'https://buy.stripe.com/14AcN64lJ5DWdpdg1L93y04'}
+              onClick={() => {
+                window.location.href = 'https://buy.stripe.com/14AcN64lJ5DWdpdg1L93y04'
+                window.amplitude?.track?.("plan_selected", {
+                  plan_id: selectedPlan,
+                })
+              }}
               className="w-full h-[56px] rounded-[32px] text-white font-['Roboto:SemiBold','Noto_Sans_Symbols:SemiBold',sans-serif] font-semibold text-[18px] leading-[22px] uppercase transition-all bg-[#f14e58] hover:bg-[#e03d47]"
               style={{ fontVariationSettings: "'wdth' 100" }}
             >

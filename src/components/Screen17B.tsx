@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import imgSugarnologooo1 from "@/assets/sugarno-black.png";
 
@@ -12,6 +12,10 @@ export function Screen17B({ onNext }: Screen17BProps) {
 
   const handleContinue = () => {
     onNext({ name, email });
+    window.amplitude?.track?.("lead_form_submitted", {
+      has_name: !!name.length,
+      has_email: !!email.length
+    });
   };
 
   const isValidEmail = (email: string) => {
@@ -20,6 +24,10 @@ export function Screen17B({ onNext }: Screen17BProps) {
   };
 
   const isValid = name.trim().length > 0 && isValidEmail(email.trim());
+
+  useEffect(() => {
+    window.amplitude?.track?.("lead_form_viewed");
+  }, [])
 
   return (
     <div className="h-full bg-[#f5f5f5] flex flex-col overflow-hidden">
