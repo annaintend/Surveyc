@@ -30,6 +30,9 @@ export function Screen8({ onNext }: Screen8Props) {
   const handleNext = () => {
     if (selected.length > 0) {
       onNext();
+      window.amplitude?.track?.("future_state_viewed", {
+        expected_result: selected.join(', '),
+      })
     }
   };
 

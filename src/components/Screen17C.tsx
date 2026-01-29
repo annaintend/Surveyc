@@ -23,6 +23,7 @@ export function Screen17C({ onNext }: Screen17CProps) {
   const handleContinue = () => {
     if (selectedAge) {
       onNext({ ageRange: selectedAge });
+      window.amplitude?.track?.("final_screen_viewed")
     }
   };
 
