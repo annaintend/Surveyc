@@ -24,7 +24,22 @@ export function Screen18({ onNext }: Screen18Props) {
         }
         return prev + 1;
       });
+      
     }, 1500);
+    const answers = localStorage.getItem('answers');
+    if(answers) {
+      const parsedAnswers = JSON.parse(answers);
+      const form = new FormData();
+      for(const key in parsedAnswers) {
+        form.append(key, parsedAnswers[key]);
+      }
+      form.append('funnel type', 'survey-c');
+      
+      fetch('https://hooks.zapier.com/hooks/catch/26016019/ulmeld4/', {
+        method: 'POST',
+        body: form,
+      });
+    }
 
     return () => clearInterval(interval);
   }, [onNext]);

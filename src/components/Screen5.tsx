@@ -20,10 +20,15 @@ export function Screen5({ onNext }: Screen5Props) {
 
   const handleNext = () => {
     if (selected) {
-      onNext();
+      localStorage.setItem('answers', JSON.stringify({
+        ...JSON.parse(localStorage.getItem('answers') || '{}'),
+        goal_type: selected
+      }));
       window?.amplitude?.track?.("goal_selected", {
         goal_type: selected
       });
+
+      onNext();
     }
   };
 

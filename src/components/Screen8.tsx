@@ -29,6 +29,10 @@ export function Screen8({ onNext }: Screen8Props) {
 
   const handleNext = () => {
     if (selected.length > 0) {
+      localStorage.setItem('answers', JSON.stringify({
+        ...JSON.parse(localStorage.getItem('answers') || '{}'),
+        desired_features: selected.join(', ')
+      }));
       onNext();
     }
   };

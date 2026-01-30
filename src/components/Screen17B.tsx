@@ -15,11 +15,18 @@ export function Screen17B({ onNext }: Screen17BProps) {
   }, [])
 
   const handleContinue = () => {
-    onNext({ name, email });
     window?.amplitude?.track?.("lead_form_submitted", {
       has_name: !!name.length,
       has_email: !!email.length
     })
+
+    localStorage.setItem('answers', JSON.stringify({
+      ...JSON.parse(localStorage.getItem('answers') || '{}'),
+      name,
+      email
+    }));
+
+    onNext({ name, email });
   };
 
   const isValidEmail = (email: string) => {
