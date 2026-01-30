@@ -1,7 +1,7 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import imgSugarnologooo1 from "@/assets/sugarno-black.png";
+import { useState } from 'react';
+import imgSugarnologooo1 from "figma:asset/90d0b2808b9f2d4ad23a49432895256cef99dbdf.png";
 
 interface Screen26Props {
   onNext: () => void;
@@ -9,10 +9,6 @@ interface Screen26Props {
 
 export function Screen26({ onNext }: Screen26Props) {
   const [selectedPlan, setSelectedPlan] = useState<'monthly' | 'annual'>('annual');
-
-  useEffect(() => {
-    window.amplitude?.track?.("plan_selection_viewed");
-  }, [])
 
   return (
     <div className="h-full bg-[#f5f5f5] flex flex-col overflow-hidden">
@@ -27,7 +23,7 @@ export function Screen26({ onNext }: Screen26Props) {
         </div>
 
         {/* Content area - scrollable */}
-        <div className="flex-1 overflow-y-auto pt-[93px] pb-32">
+        <div className="flex-1 overflow-y-auto pt-[93px] pb-[160px]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -61,11 +57,11 @@ export function Screen26({ onNext }: Screen26Props) {
                       Monthly
                     </div>
                     <div className="flex items-baseline gap-1 mb-1">
-                      <span className="font-['Poppins:Bold',sans-serif] font-bold text-[24px] text-black">$15</span>
+                      <span className="font-['Poppins:Bold',sans-serif] font-bold text-[24px] text-black">$12.99</span>
                       <span className="font-['Poppins:Regular',sans-serif] font-normal text-[14px] text-[#6b7280]">/mo</span>
                     </div>
                     <div className="font-['Poppins:Regular',sans-serif] font-normal text-[12px] text-[#9ca3af]">
-                      Billed as one payment of $15 per month
+                      Start with 7 days free first
                     </div>
                   </div>
                 </div>
@@ -95,7 +91,7 @@ export function Screen26({ onNext }: Screen26Props) {
                       <span className="font-['Poppins:Regular',sans-serif] font-normal text-[14px] text-[#6b7280]">/mo</span>
                     </div>
                     <div className="font-['Poppins:Regular',sans-serif] font-normal text-[12px] text-[#9ca3af]">
-                      Then $94 per year after 7-day free trial
+                      Then $59.88 per year after 7-day free trial
                     </div>
                   </div>
                   {selectedPlan === 'annual' && (
@@ -167,10 +163,10 @@ export function Screen26({ onNext }: Screen26Props) {
           <div className="max-w-[450px] mx-auto pointer-events-auto">
             <button
               onClick={() => {
-                window.location.href = 'https://buy.stripe.com/14AcN64lJ5DWdpdg1L93y04'
-                window.amplitude?.track?.("plan_selected", {
-                  plan_id: selectedPlan,
-                })
+                const link = selectedPlan === 'annual' 
+                  ? 'https://buy.stripe.com/3cIcN63hFd6odpd6rb93y05'
+                  : 'https://buy.stripe.com/8x214o9G3giA5WLdTD93y03';
+                window.location.href = link;
               }}
               className="w-full h-[56px] rounded-[32px] text-white font-['Roboto:SemiBold','Noto_Sans_Symbols:SemiBold',sans-serif] font-semibold text-[18px] leading-[22px] uppercase transition-all bg-[#f14e58] hover:bg-[#e03d47]"
               style={{ fontVariationSettings: "'wdth' 100" }}

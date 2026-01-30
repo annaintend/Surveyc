@@ -1,5 +1,5 @@
-import { motion } from 'motion/react';
-import imgSugarnologooo1 from "@/assets/sugarno-black.png";
+import { motion } from 'framer-motion';
+import imgSugarnologooo1 from "figma:asset/90d0b2808b9f2d4ad23a49432895256cef99dbdf.png";
 
 interface Screen17Props {
   onNext: (data?: Record<string, any>) => void;
@@ -144,7 +144,7 @@ export function Screen17({ onNext, responses = {} }: Screen17Props) {
         </div>
 
         {/* Content area - scrollable */}
-        <div className="flex-1 overflow-y-auto pt-[93px] pb-32">
+        <div className="flex-1 overflow-y-auto pt-[93px] pb-[160px]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

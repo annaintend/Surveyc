@@ -893,6 +893,10 @@
     padding-bottom: calc(var(--spacing) * 32);
   }
 
+  .pb-\[160px\] {
+    padding-bottom: 160px;
+  }
+
   .pb-\[200px\] {
     padding-bottom: 200px;
   }

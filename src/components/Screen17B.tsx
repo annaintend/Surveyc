@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { motion } from 'motion/react';
-import imgSugarnologooo1 from "@/assets/sugarno-black.png";
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import imgSugarnologooo1 from "figma:asset/90d0b2808b9f2d4ad23a49432895256cef99dbdf.png";
 
 interface Screen17BProps {
   onNext: (data?: Record<string, any>) => void;
@@ -12,10 +12,6 @@ export function Screen17B({ onNext }: Screen17BProps) {
 
   const handleContinue = () => {
     onNext({ name, email });
-    window.amplitude?.track?.("lead_form_submitted", {
-      has_name: !!name.length,
-      has_email: !!email.length
-    });
   };
 
   const isValidEmail = (email: string) => {
@@ -24,10 +20,6 @@ export function Screen17B({ onNext }: Screen17BProps) {
   };
 
   const isValid = name.trim().length > 0 && isValidEmail(email.trim());
-
-  useEffect(() => {
-    window.amplitude?.track?.("lead_form_viewed");
-  }, [])
 
   return (
     <div className="h-full bg-[#f5f5f5] flex flex-col overflow-hidden">

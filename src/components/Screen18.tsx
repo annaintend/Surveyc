@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 
 interface Screen18Props {
   onNext: () => void;
@@ -28,10 +28,6 @@ export function Screen18({ onNext }: Screen18Props) {
 
     return () => clearInterval(interval);
   }, [onNext]);
-
-  useEffect(() => {
-    window.amplitude?.track?.("plan_generation_started");
-  })
 
   return (
     <div className="h-full bg-[#f5f5f5] flex flex-col overflow-hidden">

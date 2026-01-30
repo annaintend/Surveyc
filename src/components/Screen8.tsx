@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Check } from 'lucide-react';
-import { motion } from 'motion/react';
-import imgSugarnologooo1 from "@/assets/sugarno-black.png";
+import { motion } from 'framer-motion';
+import imgSugarnologooo1 from "figma:asset/90d0b2808b9f2d4ad23a49432895256cef99dbdf.png";
 
 interface Screen8Props {
   onNext: (data: Record<string, any>) => void;
@@ -30,9 +30,6 @@ export function Screen8({ onNext }: Screen8Props) {
   const handleNext = () => {
     if (selected.length > 0) {
       onNext();
-      window.amplitude?.track?.("future_state_viewed", {
-        expected_result: selected.join(', '),
-      })
     }
   };
 
