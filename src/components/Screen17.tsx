@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import imgSugarnologooo1 from "@/assets/sugarno-black-logo.png";
 
@@ -12,6 +13,10 @@ interface Insight {
 }
 
 export function Screen17({ onNext, responses = {} }: Screen17Props) {
+
+  useEffect(() => {
+    window.amplitude?.track?.("motivation_screen_viewed");
+  }, [])
   // Generate dynamic insights based on user responses
   const generateInsights = (): Insight[] => {
     const insights: Insight[] = [];

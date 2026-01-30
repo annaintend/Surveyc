@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import imgSugarnologooo1 from "@/assets/sugarno-black-logo.png";
 
@@ -10,8 +10,16 @@ export function Screen17B({ onNext }: Screen17BProps) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
+  useEffect(() => {
+    window?.amplitude?.track?.("lead_form_viewed");
+  }, [])
+
   const handleContinue = () => {
     onNext({ name, email });
+    window?.amplitude?.track?.("lead_form_submitted", {
+      has_name: !!name.length,
+      has_email: !!email.length
+    })
   };
 
   const isValidEmail = (email: string) => {
