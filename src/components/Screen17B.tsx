@@ -26,6 +26,8 @@ export function Screen17B({ onNext }: Screen17BProps) {
       email
     }));
 
+    window?.fbq('track', 'CompleteRegistration');
+
     onNext({ name, email });
   };
 

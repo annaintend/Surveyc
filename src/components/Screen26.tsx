@@ -11,6 +11,7 @@ interface Screen26Props {
 export function Screen26({ onNext }: Screen26Props) {
   const [selectedPlan, setSelectedPlan] = useState<'monthly' | 'annual'>('annual');
   useEffect(() => {
+    window?.fbq('track', 'InitiateCheckout');
     window?.amplitude?.track?.("plan_selection_viewed")
   })
   return (
